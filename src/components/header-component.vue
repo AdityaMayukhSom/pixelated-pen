@@ -15,6 +15,7 @@ const userStore = useUserStore()
         <nav v-else>
             <router-link :to="FrontEndRoutes.Home">Home</router-link>
             <router-link :to="FrontEndRoutes.Write">Write</router-link>
+            <button @click="userStore.logout">Logout</button>
         </nav>
     </header>
 </template>
