@@ -8,8 +8,10 @@ export const useUserStore = defineStore('user-store', () => {
     async function login(username: string, password: string) {
         try {
             user.value = await User.login(username, password)
+            return true
         } catch (e) {
             user.value = User.empty()
+            return false
         }
     }
 
@@ -21,5 +23,10 @@ export const useUserStore = defineStore('user-store', () => {
         }
     }
 
-    return { user, login, logout }
+    async function register(name: string, email: string, username: string, password: string) {
+        const isRegistered = await User.register(name, email, username, password)
+        return isRegistered
+    }
+
+    return { user, login, logout, register }
 })
