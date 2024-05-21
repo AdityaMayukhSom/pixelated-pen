@@ -22,6 +22,21 @@ export class User {
         return this.name === '' || this.username === ''
     }
 
+    /**
+     * This is just a short hand for checking if the user is not
+     * empty or not. Note that it is used to check whether user
+     * has data inside or not, it does not validate the user data
+     * hence whether the user is actually logged in or it has garbage
+     * data must be checked in case of serious usecases. One workaround
+     * for future implementation is to call the backend API and
+     * validate the data against session or JWT from the backend.
+     *
+     * @returns True if the user is not empty else returns false.
+     */
+    public isLoggedIn() {
+        return !this.isEmpty()
+    }
+
     public static async login(username: string, password: string) {
         const response = await fetch(BackEndRoutes.Login, {
             headers: {
