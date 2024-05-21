@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user-store'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { FrontEndRoutes } from '@/constants'
 
 const username = ref<string>('')
 const password = ref<string>('')
 
-const userStore = useUserStore()
+const route = useRoute()
 const router = useRouter()
 
 const handleLoginFormSubmission = async (ev: Event) => {
+    const userStore = useUserStore()
     try {
         await userStore.login(username.value, password.value)
-        router.push(FrontEndRoutes.Home)
+        const previousRoute = route.query.redirect as string | null
+        router.push({
+            path: previousRoute || FrontEndRoutes.Home,
+            replace: false
+        })
     } catch (error) {
         // somehow handle the error, maybe show invalid input
     }
