@@ -1,7 +1,11 @@
+// in case of local development, put the url of the backend
+// where api serving code is hosted (eg: http://localhost:8080 etc)
+const BACKEND_BASE_URL = ''
+
 export enum BackEndRoutes {
-    Register = '/api/v1/auth/register',
-    Login = '/api/v1/auth/login',
-    Logout = '/api/v1/logout'
+    Register = BACKEND_BASE_URL + '/api/v1/auth/register',
+    Login = BACKEND_BASE_URL + '/api/v1/auth/login',
+    Logout = BACKEND_BASE_URL + '/api/v1/logout'
 }
 
 export enum FrontEndRoutes {
