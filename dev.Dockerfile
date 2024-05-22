@@ -1,7 +1,8 @@
 FROM node:20-slim AS build
+RUN corepack enable
 ENV HOST=0.0.0.0
 WORKDIR /app
 ADD package*.json .
-RUN npm ci
+RUN pnpm i
 COPY . .
-CMD [ "npm", "run", "dev" ]
+CMD [ "pnpm", "run", "dev" ]
