@@ -28,5 +28,10 @@ export const useUserStore = defineStore('user-store', () => {
         return isRegistered
     }
 
-    return { user, login, logout, register }
+    async function checkAuthentication() {
+        user.value = await User.getUserIfAuthenticated()
+        return user.value.isLoggedIn()
+    }
+
+    return { user, login, logout, register, checkAuthentication }
 })

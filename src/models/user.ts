@@ -1,4 +1,4 @@
-import { ZodLoginResponse } from '@/response'
+import { ZodAuthenticatedResponse, ZodLoginResponse } from '@/response'
 import { BackEndRoutes, HttpMethods } from '@/constants'
 
 export class User {
@@ -90,6 +90,32 @@ export class User {
         console.log(data)
         if (response.status >= 400) {
             throw new Error('could not logout from server')
+        }
+    }
+
+    /**
+     * Requests backend to check whether or not the user is authenticated, if yes returns
+     * the authenticated user, otherwise returns an empty user. If network error occurs,
+     * returns an empty user.
+     */
+    static async getUserIfAuthenticated() {
+        try {
+            const response = await fetch(BackEndRoutes.IsAuthenticated)
+            if (!response.ok) {
+                throw new Error('authentication route cannot be reached')
+            }
+            const data = await response.json()
+            console.log(data)
+            const isAuthResp = ZodAuthenticatedResponse.parse(data)
+            if (isAuthResp.authenticated) {
+                const existingUser = new User(isAuthResp.user.name, isAuthResp.user.username)
+                return existingUser
+            } else {
+                return User.empty()
+            }
+        } catch (error) {
+            // console.log(error)
+            return User.empty()
         }
     }
 }
