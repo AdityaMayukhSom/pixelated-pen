@@ -1,57 +1,86 @@
-import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
+import {
+    createRouter,
+    createWebHistory,
+    type RouteLocationNormalized,
+    type RouteLocationRaw
+} from 'vue-router'
 import { FrontEndRoutes } from '@/constants'
 import HomeView from '@/views/home-view.vue'
 import { useUserStore } from '@/stores/user-store'
 import pinia from '@/stores'
 
-function alreadyAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized) {
+async function alreadyAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized) {
     const userStore = useUserStore(pinia)
-    if (userStore.user.isLoggedIn()) {
+    await userStore.checkAuthentication()
+    if (!userStore.user.isEmpty()) {
+        const previousRoute = to.query.redirect as string | null
         return {
-            path: FrontEndRoutes.Home
-        } as RouteLocationNormalized
+            path: previousRoute || FrontEndRoutes.Home,
+            replace: true
+        } as RouteLocationRaw
     }
     return true
+}
+
+function requiresAuthentication(to: RouteLocationNormalized, from: RouteLocationNormalized) {
+    const userStore = useUserStore(pinia)
+    // route requires auth, check if logged in, else redirects to login page.
+    if (userStore.user.isEmpty()) {
+        return {
+            path: FrontEndRoutes.Auth,
+            replace: true,
+            query: {
+                redirect: to.fullPath // save the location we were at to come back later
+            }
+        } as RouteLocationRaw
+    }
 }
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: FrontEndRoutes.Home,
+            name: 'root',
+            path: '/',
+            redirect: {
+                path: '/home',
+                replace: true
+            }
+        },
+        {
             name: 'home',
             component: HomeView,
+            path: FrontEndRoutes.Home,
+            beforeEnter: [requiresAuthentication],
             meta: {
-                title: 'Home - Pixelated Pen',
-                requiresAuth: true
+                title: 'Home - Pixelated Pen'
             }
         },
         {
-            path: FrontEndRoutes.Auth,
             name: 'auth',
+            path: FrontEndRoutes.Auth,
+            beforeEnter: [alreadyAuthenticated],
             component: () => import('@/views/auth-view.vue'),
             meta: {
-                title: 'Auth - Pixelated Pen',
-                requiresAuth: false
-            },
-            beforeEnter: [alreadyAuthenticated]
-        },
-        {
-            path: FrontEndRoutes.Register,
-            name: 'register',
-            component: () => import('@/views/register-view.vue'),
-            meta: {
-                title: 'Register - Pixelated Pen',
-                requiresAuth: false
+                title: 'Auth - Pixelated Pen'
             }
         },
         {
-            path: FrontEndRoutes.Write,
+            name: 'register',
+            path: FrontEndRoutes.Register,
+            beforeEnter: [alreadyAuthenticated],
+            component: () => import('@/views/register-view.vue'),
+            meta: {
+                title: 'Register - Pixelated Pen'
+            }
+        },
+        {
             name: 'write',
+            path: FrontEndRoutes.Write,
+            beforeEnter: [requiresAuthentication],
             component: () => import('@/views/write-view.vue'),
             meta: {
-                title: 'Write - Pixelated Pen',
-                requiresAuth: true
+                title: 'Write - Pixelated Pen'
             }
         }
     ]
@@ -65,20 +94,6 @@ router.beforeEach((to, from) => {
     // const defaultDescription = 'Default Description'
     // const descriptionElement = document.querySelector('head meta[name="description"]')
     // descriptionElement.setAttribute('content', description || defaultDescription)
-
-    const userStore = useUserStore(pinia)
-
-    if (to.meta.requiresAuth && userStore.user.isEmpty()) {
-        // this route requires auth, check if logged in
-        // if not, redirect to login page.
-        return {
-            path: FrontEndRoutes.Auth,
-            // save the location we were at to come back later
-            query: {
-                redirect: to.fullPath
-            }
-        }
-    }
 })
 
 export default router
