@@ -12,7 +12,8 @@ import pinia from '@/stores'
 async function alreadyAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized) {
     const userStore = useUserStore(pinia)
     await userStore.checkAuthentication()
-    if (!userStore.user.isEmpty()) {
+
+    if (userStore.isAuthenticated()) {
         const previousRoute = to.query.redirect as string | null
         return {
             path: previousRoute || FrontEndRoutes.Home,
@@ -24,8 +25,9 @@ async function alreadyAuthenticated(to: RouteLocationNormalized, from: RouteLoca
 
 function requiresAuthentication(to: RouteLocationNormalized, from: RouteLocationNormalized) {
     const userStore = useUserStore(pinia)
+
     // route requires auth, check if logged in, else redirects to login page.
-    if (userStore.user.isEmpty()) {
+    if (!userStore.isAuthenticated()) {
         return {
             path: FrontEndRoutes.Auth,
             replace: true,
