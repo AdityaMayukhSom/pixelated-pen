@@ -1,33 +1,7 @@
 {
-    "files": [],
-    "include": ["src/**/*.vue"],
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        },
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.vitest.json"
-        }
-    ],
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["./src/*"]
-        },
-        "strict": true,
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "jsx": "preserve",
-        "jsxImportSource": "solid-js",
-        "types": ["vite/client"],
-        "noEmit": true,
-        "isolatedModules": true,
-        "noUnusedLocals": true
-    }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
