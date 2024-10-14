@@ -116,7 +116,7 @@ export const router = createBrowserRouter([
   {
     path: "*",
     lazy: async () => {
-      const { NotFound } = await import("devstream/aurelia/pages/NotFound");
+      const { NotFound } = await import("devstream/aurelia/pages/extras/NotFound");
       return { Component: NotFound };
     },
   },
