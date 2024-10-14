@@ -1,17 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './styles/main.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Aurelia } from "./app/Aurelia";
+import "./styles/main.css";
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById("root");
 
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
-      <App />
+      <Aurelia />
     </StrictMode>
-  )
+  );
 } else {
-  throw new Error('could not find an element with id `root` in index.html file')
+  throw new Error("could not find an element with id `root` in index.html file");
 }
-
