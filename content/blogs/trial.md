@@ -5,7 +5,7 @@ published-on: "2024-08-11"
 
 # Working with MDX in NuxtJS
 
-```js showLineNumbers
+```js :line-numbers
 class Complex {
     public x: number;
     public y: number;
@@ -27,7 +27,9 @@ Okay, so here’s a few things I needed to learn or remind myself heading into t
 
 - There’s also a special catch-all version of dynamic routes that works across nested folders by prefacing your dynamic segment with .... In my case with the Pierre docs, `app/src/docs/[...slug]/page.tsx` is the dynamic segment that allows us to render any docs [MDX page](https://mdxjs.com/docs/using-mdx/#props), no matter the subfolder.
 
-```java {4} showLineNumbers
+```java :line-numbers {4}
+import java.util.lang;
+
 public class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
         Map<Integer, Integer> mp = new HashMap<>();
@@ -49,7 +51,35 @@ public class Solution {
 }
 ```
 
-```js showLineNumbers
+```go :line-numbers
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World")
+}
+
+```
+
+```cpp :line-numbers
+class TextBox: public TextBoxCore
+{
+  private:
+    int Alignment;
+    int Left,Top,Width,Height;
+    char Caption[50];
+
+  public:
+    TextBox(int left, int top, int width, int height, char caption[],int Align);
+    void Draw();
+    void SetText(char text[]);
+    char *GetText();
+    void Clear();
+};
+```
+
+```js :line-numbers
 class Dimention {
     public width: number;
     public height: number;
@@ -63,7 +93,7 @@ class Dimention {
 export default Dimention;
 ```
 
-```html showLineNumbers
+```html :line-numbers
 <script>
   console.log("hello world");
 </script>

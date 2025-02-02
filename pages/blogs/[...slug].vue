@@ -13,8 +13,8 @@ const { data, error, status, refresh, clear } = await useAsyncData(`blog-${route
     &nbsp;&gt;&nbsp;
     <p>{{ data?.title }}</p>
   </header>
-  <main class="bg-dark-base text-white w-full sm:px-12 md:px-20 lg:px-32 xl:px-52">
-    <article class="w-full max-w-2xl leading-6 selection:bg-fuchsia-300 selection:text-fuchsia-900 pt-16 pb-16 px-8">
+  <main class="bg-dark-base text-white w-full pt-16 pb-8 px-8 sm:px-12 md:px-20 lg:px-32 xl:px-52">
+    <article class="w-full max-w-2xl leading-6 selection:bg-fuchsia-300 selection:text-fuchsia-900">
       <ContentRenderer v-if="data" :value="data" />
       <p v-else>No Content to Show</p>
     </article>

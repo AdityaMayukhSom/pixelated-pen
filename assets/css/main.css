@@ -2,7 +2,7 @@
 
 @theme {
   --font-display: "Inter", sans-serif;
-  --font-monospace-only: "monospace";
+  --font-monospace-only: "Ubuntu Mono";
   --font-consolas-only: Consolas;
   --text-three-and-half-xl: 32px;
   --leading-four-and-half: 1.125rem;
@@ -19,6 +19,7 @@
   --color-creamy-peach: #ffdab9;
   --color-sunshine-yelow: #fb8b24;
   --color-baby-pink: #e699a6;
+  --color-code-snippet-backgroung: rgb(34, 39, 46);
 }
 
-@custom-variant line-number (&>[data-line-number]::before);
+@custom-variant line-number (&>[line]::before);

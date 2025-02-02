@@ -2,7 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  spaLoadingTemplate: false,
   app: {
     rootTag: "body",
     head: {
@@ -11,10 +11,12 @@ export default defineNuxtConfig({
       },
     },
   },
-  spaLoadingTemplate: false,
+  devServer: {
+    loadingTemplate: undefined,
+  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
-  css: ["~/assets/css/main.css", "~/assets/css/highlightjs.css"],
+  css: ["~/assets/css/main.css"],
 
   vite: {
     plugins: [tailwindcss()],
@@ -28,11 +30,44 @@ export default defineNuxtConfig({
   },
   content: {
     watch: {
-      enabled: false,
+      enabled: true,
     },
     build: {
       markdown: {
-        highlight: {},
+        rehypePlugins: {},
+        remarkPlugins: {},
+        highlight: {
+          theme: "github-dark-dimmed",
+          langs: [
+            "js",
+            "jsx",
+            "json",
+            "ts",
+            "tsx",
+            "vue",
+            "css",
+            "html",
+            "vue",
+            "bash",
+            "md",
+            "mdc",
+            "yaml",
+            "java",
+            "cpp",
+            "go",
+            "python",
+            "angular-ts",
+            "powershell",
+            "c",
+            "csharp",
+            "zig",
+            "rust",
+            "vue",
+            "vimscript",
+            "vue-html",
+            "sql",
+          ],
+        },
       },
     },
   },

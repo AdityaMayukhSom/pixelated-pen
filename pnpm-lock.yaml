@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@heroicons/vue':
+        specifier: ^2.2.0
+        version: 2.2.0(vue@3.5.13(typescript@5.7.3))
       '@nuxt/content':
         specifier: ^3.0.1
         version: 3.0.1(@libsql/client@0.14.0)(magicast@0.3.5)(pg@8.13.1)(rollup@4.32.1)
@@ -23,9 +26,6 @@ importers:
       eslint:
         specifier: ^9.0.0
         version: 9.19.0(jiti@2.4.2)
-      highlight.js:
-        specifier: ^11.11.1
-        version: 11.11.1
       nuxt:
         specifier: ^3.15.3
         version: 3.15.4(@libsql/client@0.14.0)(@parcel/watcher@2.5.1)(@types/node@22.12.0)(better-sqlite3@11.8.1)(db0@0.2.3(@libsql/client@0.14.0)(better-sqlite3@11.8.1))(eslint@9.19.0(jiti@2.4.2))(ioredis@5.4.2)(lightningcss@1.29.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.1)(terser@5.37.0)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.37.0)(yaml@2.7.0))(yaml@2.7.0)
@@ -413,6 +413,11 @@ packages:
   '@eslint/plugin-kit@0.2.5':
     resolution: {integrity: sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@heroicons/vue@2.2.0':
+    resolution: {integrity: sha512-G3dbSxoeEKqbi/DFalhRxJU4mTXJn7GwZ7ae8NuEQzd1bqdd0jAbdaBZlHPcvPD2xI1iGzNVB4k20Un2AguYPw==}
+    peerDependencies:
+      vue: '>= 3'
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2383,10 +2388,6 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
-
-  highlight.js@11.11.1:
-    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
-    engines: {node: '>=12.0.0'}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -5062,6 +5063,10 @@ snapshots:
       '@eslint/core': 0.10.0
       levn: 0.4.1
 
+  '@heroicons/vue@2.2.0(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      vue: 3.5.13(typescript@5.7.3)
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -7602,8 +7607,6 @@ snapshots:
       space-separated-tokens: 2.0.2
 
   he@1.2.0: {}
-
-  highlight.js@11.11.1: {}
 
   hookable@5.5.3: {}
 
