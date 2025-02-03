@@ -1,6 +1,6 @@
 <template>
   <main
-    className="min-h-svh relative w-full grid grid-cols-[auto_1fr] text-xl *:selection:bg-emerald-200 *:selection:text-emerald-900 text-white/[0.87] scroll-smooth bg-landing-page-base font-satoshi *:font-satoshi"
+    class="min-h-svh relative w-full grid grid-cols-[auto_1fr] text-xl *:selection:bg-emerald-200 *:selection:text-emerald-900 text-white/[0.87] scroll-smooth bg-landing-page-base font-satoshi *:font-satoshi"
   >
     <CompanyNavbar />
     <section>
@@ -17,7 +17,7 @@
         helping teams optimize their workflows and adopt the best practices in the industry. Our goal is to foster a
         thriving community where developers can learn, grow, and collaborate effectively.
       </CompanyAnalytics>
-      <section className="sticky">
+      <section class="sticky">
         <CompanyAnalytics title="3&emsp;How To Join" id="how-to-join" :sticky="false">
           We are dedicated to empowering businesses by providing a wide range of services. We focus on software
           development, offering our expertise in creating robust applications. We also provide consulting services,

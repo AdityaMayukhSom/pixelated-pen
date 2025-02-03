@@ -3,7 +3,7 @@ definePageMeta({});
 
 const route = useRoute();
 const { data, error, status, refresh, clear } = await useAsyncData(`blog-${route.path}`, () => {
-  return queryCollection("content").path(route.path).first();
+  return queryCollection("blogs").path(route.path).first();
 });
 </script>
 
